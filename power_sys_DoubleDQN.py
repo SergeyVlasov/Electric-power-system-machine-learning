@@ -105,37 +105,9 @@ class Sys(tk.Tk, object):
         self.freq_text = self.canvas.create_text(350, 200, text = str('ПС'),fill="black")
         self.freq_text = self.canvas.create_text(50, 30, text = str('Станция 1'),fill="black")
         self.freq_text = self.canvas.create_text(50, 330, text = str('Станция 2'),fill="black")
-        '''CONSUMPTION'''
-        self.but = tk.Button( text = "увеличить")
-        # Call on function change_label with amount = 10
-        self.but.bind("<Button-1>", lambda event: self.increase_consumption())
-        self.but.place(relx=0.855, rely = 0.55, anchor = "center")
-        self.but = tk.Button(text = "уменьшить")
-        # Call on function change_label with amount = -10
-        self.but.bind("<Button-1>", lambda event: self.decrease_consumption())
-        self.but.place(relx=0.857, rely = 0.62, anchor = "center")
-        #GENERATION:
-        self.but = tk.Button( text = "увеличить")
-        # Call on function change_label with amount = 10
-        self.but.bind("<Button-1>", lambda event: self.increase_1power())
-        self.but.place(relx=0.275, rely = 0.25, anchor = "center")
-        self.but = tk.Button( text = "уменьшить")
-        # Call on function change_label with amount = 10
-        self.but.bind("<Button-1>", lambda event: self.decrease_1power())
-        self.but.place(relx=0.277, rely = 0.32, anchor = "center")
-        self.but = tk.Button( text = "увеличить")
-        # Call on function change_label with amount = 10
-        self.but.bind("<Button-1>", lambda event: self.increase_2power())
-        self.but.place(relx=0.275, rely = 0.85, anchor = "center")
-        self.but = tk.Button( text = "уменьшить")
-        # Call on function change_label with amount = 10
-        self.but.bind("<Button-1>", lambda event: self.decrease_2power())
-        self.but.place(relx=0.277, rely = 0.92, anchor = "center")
         
-
-
         '''CONSUMPTION'''
-        '''
+        
         self.but = tk.Button( text = "UP")
         # Call on function change_label with amount = 10
         self.but.bind("<Button-1>", lambda event: self.increase_consumption())
@@ -161,9 +133,8 @@ class Sys(tk.Tk, object):
         # Call on function change_label with amount = 10
         self.but.bind("<Button-1>", lambda event: self.decrease_2power())
         self.but.place(relx=0.3, rely = 0.92, anchor = "center")
-        '''
-
-
+        
+        
         '''
         #RESET
         self.but = tk.Button( text = "RESET")
