@@ -458,10 +458,10 @@ def run_env():
             if (step > start_increase_e_greedy and step % 100 == 0):
                 RL.decrease_greedy()
             
-            file1 = open(r"C:/Users/windows/Desktop/python/make_graph/DQN_step.txt", "a")
+            file1 = open(r"./DQN_step.txt", "a")
             file1.write(str(step) + ';')
             file1.close
-            file2 = open(r"C:/Users/windows/Desktop/python/make_graph/DQN_freq.txt", "a")
+            file2 = open(r"./DQN_freq.txt", "a")
             file2.write(str(env.frequency) + ';')
             file2.close
 
@@ -472,11 +472,11 @@ def run_env():
         import numpy as np
         import math
 
-        a = open('C:/Users/windows/Desktop/python/make_graph/DQN_step.txt', 'r')
+        a = open('./DQN_step.txt', 'r')
         b=a.read().split(';')
         b.pop()
         x=[float(i) for i in b]
-        c = open('C:/Users/windows/Desktop/python/make_graph/DQN_freq.txt', 'r')
+        c = open('./DQN_freq.txt', 'r')
         d=c.read().split(';')
         d.pop()
         y=[float(i) for i in d]
@@ -485,7 +485,7 @@ def run_env():
         ax.set_xlabel("step")
         ax.set_ylabel("frequency")
         ax.legend()
-        fig.savefig('C:/Users/windows/Desktop/python/make_graph/DQN.png')
+        fig.savefig('./DQN.png')
 
 
 if __name__ == "__main__":
