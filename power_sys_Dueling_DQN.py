@@ -335,6 +335,15 @@ class DoubleDQN:
             self.loss = tf.reduce_mean(tf.squared_difference(self.q_target, self.q_eval))
         with tf.variable_scope('train'):
             self._train_op = tf.train.RMSPropOptimizer(self.lr).minimize(self.loss)
+            # other variants:
+            #self._train_op = tf.train.GradientDescentOptimizer(self.lr).minimize(self.loss)
+            #self._train_op = tf.train.AdamOptimizer(self.lr).minimize(self.loss)
+            #self._train_op = tf.train.AdadeltaOptimizer(self.lr).minimize(self.loss)
+            #self._train_op =tf.train.AdagradOptimizer(self.lr).minimize(self.loss)
+            #self._train_op =tf.train.FtrlOptimizer(self.lr).minimize(self.loss)
+            #self._train_op =tf.train.MomentumOptimizer(self.lr).minimize(self.loss)
+            #self._train_op =tf.train.ProximalAdagradOptimizer(self.lr).minimize(self.loss)
+            #self._train_op =tf.train.ProximalGradientDescentOptimizer(self.lr).minimize(self.loss)
 
         # ------------------ build target_net ------------------
         self.s_ = tf.placeholder(tf.float32, [None, self.n_features], name='s_')    # input
