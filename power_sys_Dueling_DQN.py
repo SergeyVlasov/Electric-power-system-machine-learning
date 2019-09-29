@@ -313,7 +313,10 @@ class DoubleDQN:
                 w2 = tf.get_variable('w2', [n_l1, self.n_actions], initializer=w_initializer, collections=c_names)
                 b2 = tf.get_variable('b2', [1, self.n_actions], initializer=b_initializer, collections=c_names)
                 self.A = tf.matmul(l1, w2) + b2
-
+                
+                
+        # We separate the value of every action from state to value of acton A(s,a) and value of state V(s)
+        # 
             with tf.variable_scope('Q'):
                 out = self.V + (self.A - tf.reduce_mean(self.A, axis=1, keep_dims=True))     # Q = V(s) + A(s,a)
             return out
