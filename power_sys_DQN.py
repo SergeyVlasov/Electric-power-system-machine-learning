@@ -246,7 +246,7 @@ class Sys(tk.Tk, object):
         reward_len = ((self.val_1power+self.val_2power) - (self.consumption))/(self.val_1power+self.val_2power +self.consumption)   
 
         # REWARD FUNCTION
-        if next_coords == self.consumption:    
+        if next_coords == self.consumption:  # balace of consumption and generation  
             reward = 0.05
         else:
             reward = -0.01
@@ -340,7 +340,7 @@ class DeepQNetwork:
                 t1 = tf.layers.dense(self.s_, units=self.n_neurons_hidden_layer, activation=tf.nn.relu, kernel_initializer=weights, name='t1')
                 self.q_next = tf.layers.dense(t1, self.n_actions, kernel_initializer=weights, name='t2')
 
-        # Bellnam equation: Q(s, a) = r(s, a) + yQ(s', a)
+        # Bellman's equation: Q(s, a) = r(s, a) + yQ(s', a)
         # s - current state (q_eval), s' - next state (q_next)
         # Q(s, a) calculating by target net:        
         with tf.variable_scope('q_target'):
@@ -348,7 +348,7 @@ class DeepQNetwork:
             #q_target = self.r + self.gamma * np.amax(self.q_next, axis = 1) np.max or tf.reduce_max
             self.q_target = tf.stop_gradient(q_target) # no calculating gradient in this net (wheights improwed by "self.target_with_evolve_replace")
             
-        # q_eval give us the actions of newral net in current state (s):
+        # q_eval give us the actions of neural net in current state (s):
         with tf.variable_scope('q_eval'):
             a_indices = tf.stack([tf.range(tf.shape(self.a)[0], dtype=tf.int32), self.a], axis=1)
             self.q_eval_wrt_a = tf.gather_nd(params=self.q_eval, indices=a_indices)    # shape=(None, )
