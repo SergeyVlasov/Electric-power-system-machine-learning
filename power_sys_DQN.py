@@ -340,7 +340,9 @@ class DeepQNetwork:
                 t1 = tf.layers.dense(self.s_, units=self.n_neurons_hidden_layer, activation=tf.nn.relu, kernel_initializer=weights, name='t1')
                 self.q_next = tf.layers.dense(t1, self.n_actions, kernel_initializer=weights, name='t2')
 
-
+        # Bellnam equation: Q(s, a) = r(s, a) + yQ(s', a)
+        # s - current state (evaluate net)
+        # s' - next state (target net)
         with tf.variable_scope('q_target'):
             q_target = self.r + self.gamma * tf.reduce_max(self.q_next, axis=1, name='Qmax_s_')    # shape=(None, ) reduce to vector with shape = axis
             #q_target = self.r + self.gamma * np.amax(self.q_next, axis = 1) np.max or tf.reduce_max
