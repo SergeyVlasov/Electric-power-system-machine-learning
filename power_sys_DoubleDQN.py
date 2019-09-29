@@ -256,7 +256,7 @@ class Sys(tk.Tk, object):
         reward_len = ((self.val_1power+self.val_2power) - (self.consumption))/(self.val_1power+self.val_2power +self.consumption)   
 
         # REWARD FUNCTION
-        if next_coords == self.consumption:    
+        if next_coords == self.consumption:     # balace of consumption and generation  
             reward = 0.05
         else:
             reward = -0.01
@@ -377,12 +377,14 @@ class DoubleDQN:
                        self.s: batch_memory[:, -self.n_features:]})    # next observation
         q_eval = self.sess.run(self.q_eval, {self.s: batch_memory[:, :self.n_features]})
 
-        q_target = q_eval.copy()
+        q_target = q_eval.copy() # replace params from eval net to target net
 
         batch_index = np.arange(self.batch_size, dtype=np.int32)
         eval_act_index = batch_memory[:, self.n_features].astype(int)
         reward = batch_memory[:, self.n_features + 1]
 
+        
+        # "q_eval4next" q_target select action by the maxQ action in q_eval 
         if self.double_q:
             max_act4next = np.argmax(q_eval4next, axis=1)        # the action that brings the highest value is evaluated by q_eval
             selected_q_next = q_next[batch_index, max_act4next]  # Double DQN, select q_next depending on above actions
