@@ -483,7 +483,7 @@ def run_env():
 
 
 if __name__ == "__main__":
-    # maze game
+
     env = Sys()
     RL = DoubleDQN()
     env.after(100, run_env())
