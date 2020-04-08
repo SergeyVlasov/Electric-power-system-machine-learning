@@ -471,6 +471,16 @@ def run_env():
             
             step += 1
             #print('step: ', step)
+            
+        # print weidhts
+        variables = tf.trainable_variables()
+        print(variables)
+        init = tf.global_variables_initializer()
+        sess = tf.Session()
+        sess.run(init)
+        print("Weight matrix: {0}".format(sess.run(variables[2])))
+        
+        
         import matplotlib.pyplot as plt
         import numpy as np
         import math
